@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htm@3.1.1/dist/htm.js"></script>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/create-react-class@15.7.0/create-react-class.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <title>R</title>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const h = React.createElement
+    const cRC = createReactClass
+    const html = htm.bind(h)
+</script>
+<script type="module">
+    import App from './App.js'
+    const root = ReactDOM.createRoot(document.querySelector('#app'))
+
+    root.render(h(cRC({
+        getInitialState() {
+            return {
+                count: 0
+            }
+        },
+        increase() {
+            this.setState((ps) => ({ count: ps.count + 1 }))
+        },
+        render() {
+            return html`<${App} count="${this.state.count}" increase=${this.increase} />`
+        },
+    })))
+</script>
+
+</html>
